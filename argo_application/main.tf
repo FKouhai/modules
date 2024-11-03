@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    argocd = {
+      source = "argoproj-labs/argocd"
+      version = "7.0.3"
+    }
+  }
+}
 resource "argocd_application" "helm" {
   metadata {
     name = var.app_name
