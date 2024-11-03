@@ -9,6 +9,14 @@ resource "argocd_application" "helm" {
       server = var.k8s_server
       namespace = var.dest_ns
     }
+    sync_policy {
+      automated {
+        prune = true
+        self_heal = true
+        allow_empty = true
+      }
+      sync_options = ["CreateNamespace=true"]
+    }
     source {
       repo_url = var.repo
       chart = var.chart
